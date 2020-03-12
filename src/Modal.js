@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { imageArray } from "./models";
 
 const Modal = ({ isShowing, hide }) =>
   isShowing
@@ -13,19 +14,31 @@ const Modal = ({ isShowing, hide }) =>
             tabIndex={-1}
             role="dialog"
           >
-            <div className="modal">
+            <button
+              type="button"
+              className="modal-close-button"
+              data-dismiss="modal"
+              aria-label="Close"
+              onClick={hide}
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <div
+              className="modal"
+              style={{ display: "flex", flexDirection: "row" }}
+            >
               <div className="modal-header">
-                <button
-                  type="button"
-                  className="modal-close-button"
-                  data-dismiss="modal"
-                  aria-label="Close"
-                  onClick={hide}
-                >
-                  <span aria-hidden="true">&times;</span>
-                </button>
+                <div>
+                  {imageArray
+                    ? imageArray.map(image => (
+                        <React.Fragment key={image.title}>
+                          <div>{image.title}</div>
+                          <img alt={image.title} src={image.url} />
+                        </React.Fragment>
+                      ))
+                    : null}
+                </div>
               </div>
-              <p>Hello, I'm a modal.</p>
             </div>
           </div>
         </React.Fragment>,
