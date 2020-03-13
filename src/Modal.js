@@ -1,8 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-const Modal = ({ isShowing, hide, images, modalHandler }) =>
-  isShowing
+const Modal = ({ isShowing, hide, images, modalHandler }) => {
+  const handleAll = val => {
+    modalHandler(val);
+    hide();
+  };
+  return isShowing
     ? ReactDOM.createPortal(
         <React.Fragment>
           <div className="modal-overlay" />
@@ -32,7 +36,7 @@ const Modal = ({ isShowing, hide, images, modalHandler }) =>
                     ? images.map(image => (
                         <div
                           key={image.title}
-                          onClick={() => modalHandler(image.title)}
+                          onClick={() => handleAll(image.title)}
                         >
                           <div>{image.title}</div>
                           <img alt={image.title} src={image.url} />
@@ -47,5 +51,6 @@ const Modal = ({ isShowing, hide, images, modalHandler }) =>
         document.body
       )
     : null;
+};
 
 export default Modal;

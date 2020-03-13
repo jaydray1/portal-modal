@@ -38,7 +38,7 @@ const App = () => {
         images={imageArray}
         modalHandler={modalHandler}
       />
-      {currentUrl}
+      <div style={{ marginTop: "10px" }}>{currentUrl}</div>
     </div>
   );
 };
