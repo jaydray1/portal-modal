@@ -37,6 +37,7 @@ const Modal = ({ isShowing, hide, images, modalHandler }) => {
                         <div
                           key={image.title}
                           onClick={() => handleAll(image.title)}
+                          style={{ cursor: "pointer" }}
                         >
                           <div>{image.title}</div>
                           <img alt={image.title} src={image.url} />
