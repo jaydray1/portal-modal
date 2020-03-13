@@ -1,8 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { imageArray } from "./models";
 
-const Modal = ({ isShowing, hide }) =>
+const Modal = ({ isShowing, hide, images, modalHandler }) =>
   isShowing
     ? ReactDOM.createPortal(
         <React.Fragment>
@@ -29,12 +28,15 @@ const Modal = ({ isShowing, hide }) =>
             >
               <div className="modal-header">
                 <div>
-                  {imageArray
-                    ? imageArray.map(image => (
-                        <React.Fragment key={image.title}>
+                  {images
+                    ? images.map(image => (
+                        <div
+                          key={image.title}
+                          onClick={() => modalHandler(image.title)}
+                        >
                           <div>{image.title}</div>
                           <img alt={image.title} src={image.url} />
-                        </React.Fragment>
+                        </div>
                       ))
                     : null}
                 </div>

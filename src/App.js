@@ -3,6 +3,7 @@ import "./styles.css";
 import styled from "styled-components";
 import Modal from "./Modal";
 import useModal from "./useModal";
+import { imageArray } from "./models";
 
 const Button = styled.button`
   background-color: black;
@@ -20,12 +21,24 @@ const Button = styled.button`
 
 const App = () => {
   const { isShowing, toggle } = useModal();
+  const [currentUrl, setCurrentUrl] = React.useState("");
+
+  const modalHandler = val => {
+    setCurrentUrl(val);
+  };
+
   return (
     <div className="App">
-      <h1>Hello CodeSandbox</h1>
-      <h2>Start editing to see some magic happen!</h2>
+      <h1>Options to Images Proto</h1>
+      <h2>Click the button to see images</h2>
       <Button onClick={toggle}>Click Here to Open Modal</Button>
-      <Modal isShowing={isShowing} hide={toggle} />
+      <Modal
+        isShowing={isShowing}
+        hide={toggle}
+        images={imageArray}
+        modalHandler={modalHandler}
+      />
+      {currentUrl}
     </div>
   );
 };
